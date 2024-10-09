@@ -1,10 +1,11 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->middleware(['auth:api', 'admin'])->group(function () {
-    // Admin routes here
+    Route::apiResource('products', ProductController::class);
 });
 
 Route::post('login', [AuthController::class, 'login']);
