@@ -3,6 +3,10 @@
 use App\Http\Controllers\Api\AuthController;
 use Illuminate\Support\Facades\Route;
 
+Route::prefix('admin')->middleware(['auth:api', 'admin'])->group(function () {
+    // Admin routes here
+});
+
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
 
