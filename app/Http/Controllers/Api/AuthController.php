@@ -23,9 +23,9 @@ class AuthController extends Controller
     public function register(UserRegisterRequest $request): JsonResponse
     {
         $registerDto = new RegisterDto(
-            $request->input('name'),
-            $request->input('email'),
-            $request->input('password')
+            $request->string('name'),
+            $request->string('email'),
+            $request->string('password')
         );
 
         $user = $this->userService->createUser($registerDto);
@@ -37,8 +37,8 @@ class AuthController extends Controller
     public function login(UserLoginRequest $request): JsonResponse
     {
         $loginDto = new LoginDto(
-            $request->input('email'),
-            $request->input('password')
+            $request->string('email'),
+            $request->string('password')
         );
 
         if (! $token = auth()->attempt($loginDto->toArray())) {
