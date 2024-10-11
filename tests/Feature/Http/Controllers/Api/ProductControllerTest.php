@@ -34,7 +34,7 @@ class ProductControllerTest extends TestCase
             'name' => 'Test Product',
             'description' => 'Test Description',
             'price' => 100,
-            'type' => ProductType::PRODUCT->value,
+            'type' => ProductType::PIZZA->value,
         ], [
             'Authorization' => "Bearer $token",
         ]);
@@ -46,7 +46,7 @@ class ProductControllerTest extends TestCase
                     'name' => 'Test Product',
                     'description' => 'Test Description',
                     'price' => 100,
-                    'type' => ProductType::PRODUCT->value,
+                    'type' => ProductType::PIZZA->value,
                 ],
             ]);
 
@@ -63,7 +63,7 @@ class ProductControllerTest extends TestCase
             'name' => 'Test Product',
             'description' => 'Test Description',
             'price' => 100,
-            'type' => ProductType::PRODUCT->value,
+            'type' => ProductType::PIZZA->value,
         ], [
             'Authorization' => "Bearer $token",
         ]);
@@ -78,7 +78,7 @@ class ProductControllerTest extends TestCase
             'name' => 'Old Name',
             'description' => 'Old Description',
             'price' => 50,
-            'type' => ProductType::PRODUCT->value,
+            'type' => ProductType::PIZZA->value,
         ]);
 
         $response = $this->putJson("/api/admin/products/{$product->id}", [

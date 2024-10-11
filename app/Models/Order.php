@@ -28,11 +28,6 @@ class Order extends Model
         return $this->hasMany(OrderItem::class);
     }
 
-    public function calculateTotalPrice(): int
-    {
-        return $this->orderItems->sum(fn ($item) => $item->quantity * $item->price);
-    }
-
     protected function casts(): array
     {
         return [

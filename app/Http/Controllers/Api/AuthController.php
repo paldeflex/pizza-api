@@ -51,9 +51,9 @@ class AuthController extends Controller
     protected function respondWithToken(string $token): JsonResponse
     {
         $jwtTokenDto = new JwtTokenDto(
-            accessToken: $token,
-            tokenType: 'bearer',
-            expiresIn: auth()->factory()->getTTL() * 60
+            $token,
+            'bearer',
+            auth()->factory()->getTTL() * 60
         );
 
         return response()->json($jwtTokenDto->toArray());

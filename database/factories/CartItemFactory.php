@@ -12,8 +12,8 @@ class CartItemFactory extends Factory
     {
         return [
             'quantity' => fake()->numberBetween(1, 100),
-            'user_id' => User::inRandomOrder()->value('id'),
-            'product_id' => Product::inRandomOrder()->value('id'),
+            'user_id' => User::factory(),
+            'product_id' => Product::factory(),
         ];
     }
 }
