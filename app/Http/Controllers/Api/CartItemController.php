@@ -7,19 +7,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AddToCartItemRequest;
 use App\Http\Resources\CartItemResource;
 use App\Models\CartItem;
+use App\Models\Product;
 use App\Services\CartItemService;
-use App\Services\ProductService;
 
 class CartItemController extends Controller
 {
     protected CartItemService $cartItemService;
 
-    protected ProductService $productService;
-
-    public function __construct(CartItemService $cartService, ProductService $productService)
+    public function __construct(CartItemService $cartService)
     {
         $this->cartItemService = $cartService;
-        $this->productService = $productService;
     }
 
     public function store(AddToCartItemRequest $request)
@@ -27,7 +24,7 @@ class CartItemController extends Controller
         $productId = $request->validated('product_id');
         $userId = auth()->id();
 
-        $product = $this->productService->getProductById($productId);
+        $product = Product::findOrFail($productId);
 
         $limitCheck = $this->cartItemService->checkProductLimits($userId, $product);
         if ($limitCheck) {
